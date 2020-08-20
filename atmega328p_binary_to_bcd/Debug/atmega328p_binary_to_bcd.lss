@@ -1,0 +1,243 @@
+
+atmega328p_binary_to_bcd.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000006  00800100  00000156  000001ca  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         00000156  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .debug_aranges 00000028  00000000  00000000  000001d0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_pubnames 0000003b  00000000  00000000  000001f8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   0000019f  00000000  00000000  00000233  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 0000011d  00000000  00000000  000003d2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   0000018c  00000000  00000000  000004ef  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  00000030  00000000  00000000  0000067c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    0000012a  00000000  00000000  000006ac  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    0000005c  00000000  00000000  000007d6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000038  00000000  00000000  00000832  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   8:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  10:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  14:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  18:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  1c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  20:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  24:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  28:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  2c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  30:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  34:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  38:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  3c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  40:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  44:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  48:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  4c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  50:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  54:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  58:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  5c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  60:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  64:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	e6 e5       	ldi	r30, 0x56	; 86
+  7c:	f1 e0       	ldi	r31, 0x01	; 1
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <.do_copy_data_start>
+
+00000080 <.do_copy_data_loop>:
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+
+00000084 <.do_copy_data_start>:
+  84:	a6 30       	cpi	r26, 0x06	; 6
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <.do_copy_data_loop>
+  8a:	0e 94 8a 00 	call	0x114	; 0x114 <main>
+  8e:	0c 94 a9 00 	jmp	0x152	; 0x152 <_exit>
+
+00000092 <__bad_interrupt>:
+  92:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000096 <_Z10bin_to_bcdm>:
+		
+		_delay_ms(500);
+    }
+}
+
+uint16_t bin_to_bcd(uint32_t inVal)
+  96:	9b 01       	movw	r18, r22
+  98:	ac 01       	movw	r20, r24
+  9a:	60 e0       	ldi	r22, 0x00	; 0
+  9c:	70 e0       	ldi	r23, 0x00	; 0
+{
+	for(int i = 0; i < 7; i++)
+	{
+		inVal = inVal << 1;
+  9e:	22 0f       	add	r18, r18
+  a0:	33 1f       	adc	r19, r19
+  a2:	44 1f       	adc	r20, r20
+  a4:	55 1f       	adc	r21, r21
+		
+		if (((inVal >> 8) & 0x0000000F)  > 4)
+  a6:	bb 27       	eor	r27, r27
+  a8:	a5 2f       	mov	r26, r21
+  aa:	94 2f       	mov	r25, r20
+  ac:	83 2f       	mov	r24, r19
+  ae:	8f 70       	andi	r24, 0x0F	; 15
+  b0:	90 70       	andi	r25, 0x00	; 0
+  b2:	a0 70       	andi	r26, 0x00	; 0
+  b4:	b0 70       	andi	r27, 0x00	; 0
+  b6:	05 97       	sbiw	r24, 0x05	; 5
+  b8:	a1 05       	cpc	r26, r1
+  ba:	b1 05       	cpc	r27, r1
+  bc:	20 f0       	brcs	.+8      	; 0xc6 <_Z10bin_to_bcdm+0x30>
+		{
+			inVal += 768;
+  be:	20 50       	subi	r18, 0x00	; 0
+  c0:	3d 4f       	sbci	r19, 0xFD	; 253
+  c2:	4f 4f       	sbci	r20, 0xFF	; 255
+  c4:	5f 4f       	sbci	r21, 0xFF	; 255
+		}
+		if (((inVal >> 12)  & 0x0000000F) > 4)
+  c6:	da 01       	movw	r26, r20
+  c8:	c9 01       	movw	r24, r18
+  ca:	07 2e       	mov	r0, r23
+  cc:	7c e0       	ldi	r23, 0x0C	; 12
+  ce:	b6 95       	lsr	r27
+  d0:	a7 95       	ror	r26
+  d2:	97 95       	ror	r25
+  d4:	87 95       	ror	r24
+  d6:	7a 95       	dec	r23
+  d8:	d1 f7       	brne	.-12     	; 0xce <_Z10bin_to_bcdm+0x38>
+  da:	70 2d       	mov	r23, r0
+  dc:	8f 70       	andi	r24, 0x0F	; 15
+  de:	90 70       	andi	r25, 0x00	; 0
+  e0:	a0 70       	andi	r26, 0x00	; 0
+  e2:	b0 70       	andi	r27, 0x00	; 0
+  e4:	05 97       	sbiw	r24, 0x05	; 5
+  e6:	a1 05       	cpc	r26, r1
+  e8:	b1 05       	cpc	r27, r1
+  ea:	20 f0       	brcs	.+8      	; 0xf4 <_Z10bin_to_bcdm+0x5e>
+		{
+			inVal += 12288;
+  ec:	20 50       	subi	r18, 0x00	; 0
+  ee:	30 4d       	sbci	r19, 0xD0	; 208
+  f0:	4f 4f       	sbci	r20, 0xFF	; 255
+  f2:	5f 4f       	sbci	r21, 0xFF	; 255
+    }
+}
+
+uint16_t bin_to_bcd(uint32_t inVal)
+{
+	for(int i = 0; i < 7; i++)
+  f4:	6f 5f       	subi	r22, 0xFF	; 255
+  f6:	7f 4f       	sbci	r23, 0xFF	; 255
+  f8:	67 30       	cpi	r22, 0x07	; 7
+  fa:	71 05       	cpc	r23, r1
+  fc:	81 f6       	brne	.-96     	; 0x9e <_Z10bin_to_bcdm+0x8>
+  fe:	68 94       	set
+ 100:	16 f8       	bld	r1, 6
+ 102:	56 95       	lsr	r21
+ 104:	47 95       	ror	r20
+ 106:	37 95       	ror	r19
+ 108:	27 95       	ror	r18
+ 10a:	16 94       	lsr	r1
+ 10c:	d1 f7       	brne	.-12     	; 0x102 <_Z10bin_to_bcdm+0x6c>
+			inVal += 12288;
+		}	
+	}
+	int16_t outVal = inVal >> 7;
+	return outVal;
+ 10e:	82 2f       	mov	r24, r18
+ 110:	93 2f       	mov	r25, r19
+ 112:	08 95       	ret
+
+00000114 <main>:
+uint32_t binNum = 998;
+uint16_t bin_to_bcd(uint32_t inVal);
+uint16_t b = 11;
+int main(void)
+{
+	b = bin_to_bcd(binNum);
+ 114:	60 91 00 01 	lds	r22, 0x0100
+ 118:	70 91 01 01 	lds	r23, 0x0101
+ 11c:	80 91 02 01 	lds	r24, 0x0102
+ 120:	90 91 03 01 	lds	r25, 0x0103
+ 124:	0e 94 4b 00 	call	0x96	; 0x96 <_Z10bin_to_bcdm>
+ 128:	90 93 05 01 	sts	0x0105, r25
+ 12c:	80 93 04 01 	sts	0x0104, r24
+	DDRB = 1;
+ 130:	81 e0       	ldi	r24, 0x01	; 1
+ 132:	84 b9       	out	0x04, r24	; 4
+	PORTB = 1;
+ 134:	85 b9       	out	0x05, r24	; 5
+ 136:	28 e8       	ldi	r18, 0x88	; 136
+ 138:	33 e1       	ldi	r19, 0x13	; 19
+	__asm__ volatile (
+		"1: sbiw %0,1" "\n\t"
+		"brne 1b"
+		: "=w" (__count)
+		: "0" (__count)
+	);
+ 13a:	69 e1       	ldi	r22, 0x19	; 25
+ 13c:	70 e0       	ldi	r23, 0x00	; 0
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 13e:	48 e8       	ldi	r20, 0x88	; 136
+ 140:	53 e1       	ldi	r21, 0x13	; 19
+ 142:	cb 01       	movw	r24, r22
+ 144:	01 97       	sbiw	r24, 0x01	; 1
+ 146:	f1 f7       	brne	.-4      	; 0x144 <main+0x30>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 148:	21 50       	subi	r18, 0x01	; 1
+ 14a:	30 40       	sbci	r19, 0x00	; 0
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 14c:	d1 f7       	brne	.-12     	; 0x142 <main+0x2e>
+ 14e:	9a 01       	movw	r18, r20
+ 150:	f8 cf       	rjmp	.-16     	; 0x142 <main+0x2e>
+
+00000152 <_exit>:
+ 152:	f8 94       	cli
+
+00000154 <__stop_program>:
+ 154:	ff cf       	rjmp	.-2      	; 0x154 <__stop_program>
